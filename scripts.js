@@ -3,7 +3,34 @@ let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
-let currentMode = "color";
+let currentMode = "paint";
+let currentColor = "black";
+let eraserMode = document.getElementById("eraser");
+let rgbMode = document.getElementById("rgb");
+let resetBoard = document.getElementById("reset");
+let colorPicker = document.getElementById("colorPicker");
+
+eraserMode.addEventListener("click", () => {
+    currentMode = "eraser";
+});
+resetBoard.addEventListener("click", () => {
+    makeRows(16,16);
+    currentMode = "paint";
+    currentColor = "black";
+    colorPicker.value = "#333333"
+});
+rgbMode.addEventListener("click", () => {
+    currentMode = "rgb";
+})
+colorPicker.addEventListener("input", (e) => {
+    setCurrentColor(e.target.value);
+    currentMode = "paint";
+})
+
+
+function setCurrentColor(newColor) {
+    currentColor = newColor;
+  }
 
 
 function makeRows(rows, cols) {
@@ -23,7 +50,6 @@ function makeRows(rows, cols) {
 makeRows(16, 16);
 
 
-
 function addClickAction() {
     const cells = document.querySelectorAll("#color");
 
@@ -33,12 +59,23 @@ function addClickAction() {
     })
     }
 
+
 function draw(e) {
-    if (e.type === 'mouseover' && !mouseDown) {
+    if (e.type === "mouseover" && !mouseDown) {
         return;
     }
-    else {
-        e.target.style.backgroundColor = "black";
+    if (currentMode == "rgb") {
+        const randomR = Math.floor(Math.random() * 256);
+        const randomG = Math.floor(Math.random() * 256);
+        const randomB = Math.floor(Math.random() * 256);
+        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+    }
+    else if (currentMode == "eraser") {
+        currentColor = "white";
+        e.target.style.backgroundColor = currentColor;
+    }
+    else if (currentMode == "paint") {
+        e.target.style.backgroundColor = currentColor;
     }
 }
 

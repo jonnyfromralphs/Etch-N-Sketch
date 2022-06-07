@@ -14,11 +14,12 @@
         </div>
         <div class = "sketch">
             <div class="options">
+                <h1>Options</h1>
                 <button onclick="gridSize()">Set Grid Size</button>
-                <button>Color Picker</button>
-                <button>Gamer Mode</button>
+                <input id="colorPicker" type="color" value="#333333" />
+                <button id="rgb">Gamer Mode</button>
                 <button id="eraser">Eraser</button>
-                <button onclick="makeRows(16,16)">Clear</button>
+                <button id="reset">Reset</button>
             </div>
             <div class="grid" id="container"></div>
         </div>
