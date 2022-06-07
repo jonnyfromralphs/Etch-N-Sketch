@@ -1,0 +1,58 @@
+:root {
+    --grid-cols: 1;
+    --grid-rows: 1;
+}
+
+body {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(5,109,187,1) 67%,  
+        rgba(2,181,234,1) 90%, rgba(0,212,255,1) 100%);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 80px;
+}
+
+main {
+    background-color: rgb(224, 224, 224);
+    width: 900px;
+    height: 720px;
+    border-radius: 10px;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.sketch {
+    display: flex;
+    height: 80%;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    flex-basis: 20%;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.grid {
+    flex-basis: 70%;
+    display: grid;
+    border: 1px solid black;
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+}
+
+.grid-item {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+
+.grid-item:hover {
+    background-color: rgb(224, 224, 224);
+}
